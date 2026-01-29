@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Den Danske Livsstil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero"> 
+        <ul>
+            <li><a href="index.html">Startside</a></li>
+            <li><a href="Index2.html">Sundhed</a></li>
+            <li><a href="God.html">God Rutine</a></li>
+            <li><a href="Opskrifter.html">Opskrifter</a></li>
+        </ul>
+        <h1 class="alfa-slab-one-regular">Velkommen til Den Danske Livsstil</h1>
+        <h2>Her kan du finde information om sundhed, kost og motion.</h2>
+    </div>
+<div class="content">
+        <p id="demo"></p>
+        
+        <button id="morebtn" onclick="changeText1('demo', 'morebtn')">klik her for mere information</button>
+
+        <script src="script.js"></script>
+        
+
+
+    <h1 id="introduction">Introduktion</h1>
+
+        <form id="quiz">
+
+  <h2>1. Hvor ofte træner du?</h2>
+  <label>
+    <input type="radio" name="q1" value="1">
+    Sjældent
+  </label><br>
+
+  <label>
+    <input type="radio" name="q1" value="2">
+    1–2 gange om ugen
+  </label><br>
+
+  <label>
+    <input type="radio" name="q1" value="3">
+    3+ gange om ugen
+  </label>
+
+  <h2>2. Hvad er dit bmi?</h2>
+  <label>
+    <input type="radio" name="q2" value="1">
+    Under 18.5
+  </label><br>
+
+  <label>
+    <input type="radio" name="q2" value="2">
+    18.5 – 24.9
+  </label><br>
+
+  <label>
+    <input type="radio" name="q2" value="3">
+    25.0-30.0
+  </label><br>
+
+  <label>
+    <input type="radio" name="q2" value="4">
+    30.0 og derover
+  </label><br>
+
+  <h2>
+    3. Hvor mange kcal spiser du om dagen?
+  </h2>
+  <label>
+    <input type="radio" name="q3" value="1">
+    Under 1500
+  </label><br>
+
+  <label>
+    <input type="radio" name="q3" value="2">
+    1500-2000
+  </label><br>
+
+  <label>
+    <input type="radio" name="q3" value="3">
+    2000-2500
+  </label><br>
+
+  <label>
+    <input type="radio" name="q3" value="4">
+    2500 og derover
+  </label><br>
+  <h2>
+    4. Hvad er din alder?
+  </h2>
+  <label>
+    <input type="radio" name="q4" value="1">
+    Under 18
+  </label><br>
+
+  <label>
+    <input type="radio" name="q4" value="2">
+    18-30
+  </label><br>
+
+  <label>
+    <input type="radio" name="q4" value="3">
+    31-50
+  </label><br>
+
+  <label>
+    <input type="radio" name="q4" value="4">
+    51 og derover
+  </label><br>
+  <h2>5. Hvad er dit køn?</h2>
+
+  <label>
+    <input type="radio" name="gender" value="male">
+    Mand
+  </label><br>
+
+  <label>
+    <input type="radio" name="gender" value="female">
+    Kvinde
+  </label><br>
+
+    <label>
+    <input type="radio" name="gender" value="none">
+    Intetkøn
+  </label><br>
+
+  <h2>
+    6. Hvad er din livsstil?
+  </h2>
+  <label>
+    <input type="radio" name="lifestyle" value="sedentary">
+    Stillesiddende
+  </label><br>
+
+  <label>
+    <input type="radio" name="lifestyle" value="moderate">
+    Moderat aktiv
+  </label><br>
+
+  <label>
+    <input type="radio" name="lifestyle" value="active">
+    Aktiv
+  </label><br>
+
+  <br><br>
+  <button type="button" onclick="checkResults()">færdig</button>
+</form>
+
+<p id="result"></p>
+<script>
+function checkResults() {
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+    const q3 = document.querySelector('input[name="q3"]:checked');
+    const q4 = document.querySelector('input[name="q4"]:checked');
+    const lifestyle = document.querySelector('input[name="lifestyle"]:checked');
+
+    if (!q1 || !q2 || !q3 || !q4 || !lifestyle) {
+        document.getElementById("result").textContent =
+            "Svar venligst på alle spørgsmål!";
+        return;
+    }
+
+    const training = Number(q1.value);
+    const bmi = Number(q2.value);
+    const kcal = Number(q3.value);
+    const age = Number(q4.value);
+    const activity = lifestyle.value;
+
+    let result = "";
+
+    if (bmi >= 4) {
+        result = " Gruppe 1: Overvægtig. Fokus på fedttab, sund kost og motion.";
+    }
+
+    else if (bmi === 1 && kcal <= 2) {
+        result = " Gruppe 2: Undervægtig. Fokus på vægtøgning og flere kalorier.";
+    }
+
+    else if (training === 1 && bmi === 2) {
+        result = " Gruppe 3: Brug for mere motion. Mere bevægelse i hverdagen.";
+    }
+
+    else if (training >= 3 && kcal >= 3) {
+        result = " Gruppe 5: Brug for flere muskler. Styrketræning anbefales.";
+    }
+
+    else {
+        result = " Gruppe 4: Normal. God balance mellem kost og motion.";
+    }
+
+    document.getElementById("result").textContent = result;
+}
+</script>
+
+    </div>
+
+</body>
+</html>
